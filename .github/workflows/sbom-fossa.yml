@@ -11,7 +11,8 @@ jobs:
         with:
           submodules: "true"
       - name: Install FOSSA
-        run: curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install-latest.sh | bash
+        run: |
+          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install-latest.sh | bash
       - name: Analyze juice-shop with FOSSA
         run: fossa analyze
         working-directory: ./juice-shop
