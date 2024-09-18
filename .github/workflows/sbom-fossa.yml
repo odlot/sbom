@@ -1,0 +1,15 @@
+name: sbom-fossa
+
+on: workflow-dispatch
+
+jobs:
+  sbom-fossa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install FOSSA
+        run: curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install-latest.sh | bash
+      - name: Analyze juice-shop with FOSSA
+        run: fossa analyze
+        working-directory: ./juice-shop
+        env:
+          FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
